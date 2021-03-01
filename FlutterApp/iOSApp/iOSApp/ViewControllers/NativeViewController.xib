@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NativeViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdF-lk-O2F">
+                    <rect key="frame" x="128" y="433" width="158" height="30"/>
+                    <state key="normal" title="我是ios原生本地的页面"/>
+                    <connections>
+                        <action selector="backClick:" destination="-1" eventType="touchUpInside" id="Vvz-OL-4ul"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dk-PY-Cx1">
+                    <rect key="frame" x="147" y="473" width="120" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="eKX-n3-txo"/>
+                        <constraint firstAttribute="width" constant="120" id="uTi-Gb-vQj"/>
+                    </constraints>
+                    <state key="normal" title="push2flutter"/>
+                    <connections>
+                        <action selector="push2flutter:" destination="-1" eventType="touchUpInside" id="JRV-yG-P3Z"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUC-5p-anQ">
+                    <rect key="frame" x="147" y="383" width="120" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="3Q5-4H-eQt"/>
+                        <constraint firstAttribute="width" constant="120" id="rS8-a2-JNe"/>
+                    </constraints>
+                    <state key="normal" title="present2flutter"/>
+                    <connections>
+                        <action selector="present2flutter:" destination="-1" eventType="touchUpInside" id="ZYK-Fb-PaQ"/>
+                        <action selector="push2flutter:" destination="-1" eventType="touchUpInside" id="eju-Oa-veC"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="cdF-lk-O2F" firstAttribute="top" secondItem="sUC-5p-anQ" secondAttribute="bottom" constant="20" id="Bl0-Ce-h5x"/>
+                <constraint firstItem="sUC-5p-anQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="D8e-z1-uua"/>
+                <constraint firstItem="cdF-lk-O2F" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="PUa-5i-I51"/>
+                <constraint firstItem="6dk-PY-Cx1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Sv5-89-R6z"/>
+                <constraint firstItem="6dk-PY-Cx1" firstAttribute="top" secondItem="cdF-lk-O2F" secondAttribute="bottom" constant="10" id="vIL-ue-y0o"/>
+                <constraint firstItem="cdF-lk-O2F" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vZV-lY-CYo"/>
+            </constraints>
+            <point key="canvasLocation" x="94" y="46"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
