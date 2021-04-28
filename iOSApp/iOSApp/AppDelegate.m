@@ -11,18 +11,26 @@
 #import <flutter_boost/FlutterBoost.h>
 
 @interface AppDelegate ()
-
+@property (strong, nonatomic) PlatformRouterImp* pRouter;
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [FlutterBoostPlugin.sharedInstance startFlutterWithPlatform:[PlatformRouterImp new] onStart:^(FlutterEngine *engine) {}];
+    self.pRouter = [PlatformRouterImp new];
+    [FlutterBoostPlugin.sharedInstance startFlutterWithPlatform:self.pRouter onStart:^(FlutterEngine *engine) {}];
     return YES;
 }
 
-
++ (AppDelegate *)appDelegate
+{
+    AppDelegate *delegate = (id)[UIApplication sharedApplication].delegate;
+    if ([delegate isKindOfClass:[AppDelegate class]]) {
+        return delegate;
+    }
+    return nil;
+}
 
 #pragma mark - UISceneSession lifecycle
 

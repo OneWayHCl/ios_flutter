@@ -69,6 +69,12 @@ class _PresentPageState extends State<PresentPage> {
     platform.invokeMethod('presentNativeSecondPage');
   }
 
+  void nativeMethod() {
+
+    FlutterBoost.singleton.channel
+        .sendEvent("flutter-native", {"message": mediaCall(context)});
+  }
+
   String mediaCall(BuildContext context) {
     var media = MediaQuery.of(context);
     print(media.toString());
@@ -91,6 +97,16 @@ class _PresentPageState extends State<PresentPage> {
   @override
   void initState() {
     super.initState();
+
+    print('Flutter--addEventListener');
+    FlutterBoost.singleton.channel.addEventListener("native-flutter",
+        (name, params) {
+      return handleMsg(name, params);
+    });
+  }
+
+  handleMsg(String name, Map params) {
+    print("$name--原生调用flutter-$params");
   }
 
   dismissPage() {
@@ -125,26 +141,28 @@ class _PresentPageState extends State<PresentPage> {
             Text(
               nativeBackString,
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 dismissPage();
               },
               child: Text('Dismiss'),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: goToNativeSecondPage,
               child: Text('跳转原生第二个页面'),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: invokeNativeGetResult,
               child: Text('调用原生函数获取回调结果'),
             ),
-            RaisedButton(
-                child: Text('跳转第二个Flutter页面'),
+            ElevatedButton(
+                // child: Text('跳转第二个Flutter页面'),
+                child: Text('Flutter传数据到原生'),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => SecondPageContent(),
-                  ));
+                  nativeMethod();
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //   builder: (context) => SecondPageContent(),
+                  // ));
                 }),
             // Card(
             //   elevation: 4.0,
@@ -158,7 +176,7 @@ class _PresentPageState extends State<PresentPage> {
             //   child: new IconButton(
             //       icon: Icon(Icons.add), onPressed: _incrementCounter),
             // ),
-            RaisedButton(
+            ElevatedButton(
                 child: Text('显示从原生返回的手机型号'),
                 onPressed: () {
                   showDialog(
@@ -168,7 +186,7 @@ class _PresentPageState extends State<PresentPage> {
                           title: new Text('原生返回手机型号'),
                           content: Text(nativeBackString),
                           actions: <Widget>[
-                            FlatButton(
+                            ElevatedButton(
                               child: new Text('确定'),
                               onPressed: () {
                                 Navigator.of(context).pop();
@@ -177,7 +195,8 @@ class _PresentPageState extends State<PresentPage> {
                           ],
                         );
                       });
-                }),
+                }
+                ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.bodyText1,
@@ -207,7 +226,7 @@ class SecondPageContent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               new Text('第二个Present的页面内容'),
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -217,7 +236,7 @@ class SecondPageContent extends StatelessWidget {
                 },
                 child: Text('跳转第三个Flutter页面'),
               ),
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: () {
                   //先关掉flutter里面的页面
                   SystemNavigator.pop();

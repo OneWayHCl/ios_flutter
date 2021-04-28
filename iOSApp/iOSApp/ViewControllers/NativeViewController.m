@@ -45,7 +45,8 @@
 
 - (IBAction)backClick:(id)sender
 {
-    [self backAction];
+//    [self backAction];
+    [FlutterBoostPlugin.sharedInstance sendEvent:@"native-flutter" arguments:@{@"first_name_key":@"xxxxx"}];
 }
 
 - (IBAction)push2flutter:(id)sender

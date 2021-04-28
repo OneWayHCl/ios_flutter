@@ -11,6 +11,23 @@ class PushFirstApp extends StatefulWidget {
 
 class _PushFirstAppState extends State<PushFirstApp> {
   @override
+  void initState() {
+    super.initState();
+
+    print('Flutter--addEventListener');
+    FlutterBoost.singleton.channel.addEventListener("native-flutter",
+        (name, params) {
+      return handleMsg(name, params);
+    });
+  }
+
+  handleMsg(String name, Map params) {
+    print("$name--原生调用flutter-$params");
+
+    
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'enfry',
@@ -34,7 +51,7 @@ class _PushFirstAppState extends State<PushFirstApp> {
                 SizedBox(
                   height: 15,
                 ),
-                new RaisedButton(
+                new ElevatedButton(
                   onPressed: () {
                     FlutterBoost.singleton
                         .open('push2', urlParams: <String, dynamic>{
@@ -53,7 +70,7 @@ class _PushFirstAppState extends State<PushFirstApp> {
                 SizedBox(
                   height: 15,
                 ),
-                new RaisedButton(
+                new ElevatedButton(
                   onPressed: () {
                     final BoostContainerSettings settings =
                         BoostContainer.of(context).settings;
@@ -68,7 +85,7 @@ class _PushFirstAppState extends State<PushFirstApp> {
                 SizedBox(
                   height: 15,
                 ),
-                new RaisedButton(
+                new ElevatedButton(
                   onPressed: () {
                     FlutterBoost.singleton
                         .open('native', urlParams: <String, dynamic>{
@@ -106,13 +123,13 @@ class PushSecondPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             new Text('第二个Flutter页面内容'),
-            new RaisedButton(
+            new ElevatedButton(
               onPressed: () {
                 SystemNavigator.pop();
               },
               child: Text('关闭所有Flutter页面'),
             ),
-            new RaisedButton(
+            new ElevatedButton(
               onPressed: () {
                 FlutterBoost.singleton.open(
                   'push3',
